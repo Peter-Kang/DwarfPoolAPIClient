@@ -1,4 +1,6 @@
 ﻿using System;
+using DwarfPoolAPIClient.DataStruct;
+
 
 namespace DwarfPoolAPIClient
 {
@@ -8,6 +10,7 @@ namespace DwarfPoolAPIClient
         {
             Console.WriteLine("Starting Dwarfpool Client");
             //Reading in the config
+
         }
     }
 }
