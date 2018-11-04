@@ -19,7 +19,7 @@ namespace DwarfPoolAPIClient
     /// </summary>
     class DwarfPoolHtmlClient
     {
-        //The singleton class to interface with dwarfpool
+        //The singleton class that holds the connection to interface with dwarfpool
         static HttpClient connection_client = new HttpClient();
 
 

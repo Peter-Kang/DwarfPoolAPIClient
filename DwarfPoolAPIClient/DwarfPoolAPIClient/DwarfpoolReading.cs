@@ -37,9 +37,9 @@ namespace DwarfPoolAPIClient.DataStruct
         public DwarfpoolReading(string RawHtmlResponse = "") => this.ParseRawHtml(RawHtmlResponse);
 
         /// <summary>
-        /// 
+        /// Copy constructor for the Dwarfpool readings object
         /// </summary>
-        /// <param name="other"></param>
+        /// <param name="other">the other reading object you will be copying </param>
         public DwarfpoolReading(ref DwarfpoolReading other)
         {
             this._RawReponse = other._RawReponse;
@@ -60,10 +60,12 @@ namespace DwarfPoolAPIClient.DataStruct
         {
             _WorkerReadingData = new List<WorkerReadingData>();
             _RawReponse = RawHtmlResponse;
-            //Uses the Json parser to split into the current data members and labeled correctly
+            //Uses the Json parser to split into the current data members 
+            // and labeled correctly
             if (RawHtmlResponse.Length != 0)
             {
-                //using Newtonsoft to solve JSon problems. Could write my own but why re-invent the wheel right?
+                //using Newtonsoft to solve JSon problems. 
+                //Could write my own but why re-invent the wheel right?
                 dynamic json_input = JsonConvert.DeserializeObject(RawHtmlResponse);
                 //Translate the Json names to the names in the data structure
 
@@ -74,11 +76,44 @@ namespace DwarfPoolAPIClient.DataStruct
         //Getters and Setters                                                         |          
         //============================================================================
 
-        /// <summary> The Raw Html Reponse from dwarfpool; Kept to observe and log reponse data.</summary>
-        /// <value> The Raw Response property get/sets the value of the string field _RawReponse </value>
+        /// <summary> 
+        /// Modifers for the Raw Html Reponse from dwarfpool; Kept to observe and log reponse data.
+        /// </summary>
         public string RawReponse
         {
             get { return _RawReponse; }
+        }
+        /// <summary>
+        /// Modifiers for the summation of the current hashrate
+        /// </summary>
+        public double HashrateSummation
+        {
+            get { return _HashrateSummation; }
+            set { _HashrateSummation = value; }
+        }
+        /// <summary>
+        ///  Modifiers for the summation of the calculated summation
+        /// </summary>
+        public double HashrateCalculatedSummation
+        {
+            get { return _HashrateCalculatedSummation; }
+            set { _HashrateCalculatedSummation = value;}
+        }
+        /// <summary>
+        ///  Modifiers for the wallet address
+        /// </summary>
+        public string WalletAddress
+        {
+            get { return _WalletAddress;  }
+            set { _WalletAddress = value; }
+        }
+        /// <summary>
+        ///  Modifiers for all worker reading data
+        /// </summary>
+        public List<WorkerReadingData> AllWorkerReadingData
+        {
+            get { return _WorkerReadingData;  }
+            set { _WorkerReadingData = value; }
         }
 
     }
