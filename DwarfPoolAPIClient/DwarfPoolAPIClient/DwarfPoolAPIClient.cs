@@ -6,12 +6,21 @@ namespace DwarfPoolAPIClient
 {
     class DwarfPoolAPIClient
     {
+        //the web client to get the data from
+        private DwarfPoolWebClient _WebClient;
+        //Then timer to keep track of when to poll the device
+        private Timer _CurrentTimer;
+
+        /// <summary>
+        ///  Test the current functionality 
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.WriteLine("Starting Dwarfpool Client");
             //Reading in the config
-            DwarfPoolWebClient test = new DwarfPoolWebClient();
-            DwarfpoolReading test_item = new DwarfpoolReading(test.Test());
+            DwarfPoolWebClient test = new DwarfPoolWebClient("http://dwarfpool.com/eth/api?wallet=de3aFa2eD6C8e1Fe32C94151B07ecb676F9C3f15&email=mail@example.com");
+            DwarfpoolReading resting = test.GetReading();
 
         }
 
@@ -21,11 +30,8 @@ namespace DwarfPoolAPIClient
         public DwarfPoolAPIClient()
         {
             this._CurrentTimer = new Timer();
-            this._WebClient = new DwarfPoolWebClient();
-
-
+            this._WebClient = new DwarfPoolWebClient("");
         }
-        private DwarfPoolWebClient _WebClient;
-        private Timer _CurrentTimer;
+
     }
 }

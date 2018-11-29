@@ -15,23 +15,52 @@ using DwarfPoolAPIClient.DataStruct;
 namespace DwarfPoolAPIClient
 {
     /// <summary>
-    /// A Html Client to send and parse Html objects sent between the two objects
+    /// A Web Client wrapper for the dwarfpool site
     /// </summary>
     class DwarfPoolWebClient
     {
-        public DwarfPoolWebClient() { }
+        // the url to use
+        private String _Url;
+        // the web client to use
+        private WebClient _WebClient;
 
-        public DwarfPoolWebClient(ref DwarfPoolWebClient other) { }
-
-        public String Test()
+        /// <summary>
+        ///  the constructor 
+        /// </summary>
+        /// <param name="url"> deafults to empty string, the full url of the dwarfpool link</param>
+        public DwarfPoolWebClient(string url = "")
         {
-            WebClient connection_client = new WebClient();
-            String url = "http://dwarfpool.com/eth/api?wallet=de3aFa2eD6C8e1Fe32C94151B07ecb676F9C3f15&email=mail@example.com";
-            String value = "";
-            value = connection_client.DownloadString(url);
-            DwarfpoolReading temp = new DwarfpoolReading(value);
-            return value;
+            this._Url = url;
+            this._WebClient = new WebClient();
         }
 
+        /// <summary>
+        ///  copy constructor
+        /// </summary>
+        /// <param name="other"> the other class to copy</param>
+        public DwarfPoolWebClient(ref DwarfPoolWebClient other)
+        {
+            this._Url = other._Url;
+            this._WebClient = new WebClient();
+        }
+
+        /// <summary>
+        ///  Gets a reading from dwarfpool
+        /// </summary>
+        /// <returns> a null or a dwarfpool reading from the dwarfpool api</returns>
+        public DwarfpoolReading GetReading()
+        {
+            DwarfpoolReading result = null;
+            if ( this._Url.Count() != 0 )
+            {
+                String response = "";
+                response = this._WebClient.DownloadString(this._Url);
+                if (response.Count() != 0 )
+                {
+                    result = new DwarfpoolReading(response);
+                }
+            }
+            return result;
+        }
     }
 }
