@@ -334,5 +334,7 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+#user added
 *.cache
 *.assets.json
