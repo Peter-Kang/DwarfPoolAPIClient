@@ -188,7 +188,9 @@ PublishScripts/
 #!**/[Pp]ackages/repositories.config
 # NuGet v3's project.json files produces more ignorable files
 *.nuget.props
+*.nuget.g.props
 *.nuget.targets
+*.nuget.g.targets
 
 # Microsoft Azure Build Output
 csx/
@@ -332,3 +334,7 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+*.cache
+
+
+*.assets.json
